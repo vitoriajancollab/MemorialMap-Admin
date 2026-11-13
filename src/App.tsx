@@ -1,7 +1,49 @@
 
+import { useState } from 'react'
 import './App.css'
 
 function App() {
+  const [logado, setLogado] = useState(false)
+
+  if (!logado) {
+    return (
+      <div className="tela-login">
+        <div className="cartao-login">
+
+          <div className="login-logo">🕊️</div>
+
+          <h1>MEMORIAL MAP</h1>
+          <p>Painel administrativo</p>
+
+          <h2>Bem-vindo!</h2>
+          <p>Entre com suas credenciais para continuar.</p>
+
+          <form>
+            <label>Usuário</label>
+            <input
+              type="text"
+              placeholder="Digite seu usuário"
+            />
+
+            <label>Senha</label>
+            <input
+              type="password"
+              placeholder="Digite sua senha"
+            />
+
+            <button
+              type="button"
+              onClick={() => setLogado(true)}
+            >
+              Entrar
+            </button>
+          </form>
+
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="painel">
       <aside className="menu-lateral">
