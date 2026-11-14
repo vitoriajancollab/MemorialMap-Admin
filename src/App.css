@@ -942,5 +942,52 @@ a {
 }
 
 
+/* FORMULÁRIO DE USUÁRIOS */
+
+.formulario-usuario {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+  margin-top: 25px;
+}
+
+.campo-formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.campo-formulario label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #24364b;
+}
+
+.campo-formulario input,
+.campo-formulario select {
+  width: 100%;
+  padding: 13px 15px;
+  border: 1px solid #d9e0e8;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #24364b;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+  transition: 0.2s;
+}
+
+.campo-formulario input:focus,
+.campo-formulario select:focus {
+  border-color: #c49a45;
+  box-shadow: 0 0 0 3px rgba(196, 154, 69, 0.12);
+}
+
+.campo-formulario input::placeholder {
+  color: #a0aab6;
+}
+
+
 
 

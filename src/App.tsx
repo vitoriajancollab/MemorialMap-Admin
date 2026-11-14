@@ -4,6 +4,7 @@ import './App.css'
 
 function App() {
   const [logado, setLogado] = useState(false)
+  const [pagina, setPagina] = useState('inicio')
 
   if (!logado) {
     return (
@@ -63,9 +64,13 @@ function App() {
             <span>⌂</span> Início
           </a>
 
-          <a href="#" className="menu-item">
-            <span>⚰</span> Cemitérios
-          </a>
+          <a
+  href="#"
+  className={`menu-item ${pagina === 'cemiterios' ? 'ativo' : ''}`}
+  onClick={() => setPagina('cemiterios')}
+>
+  <span>⚰</span> Cemitérios
+ </a>
 
           <a href="#" className="menu-item">
             <span>♙</span> Responsáveis
@@ -75,6 +80,15 @@ function App() {
             <span>✓</span> Aprovações
             <span className="quantidade">0</span>
           </a>
+
+           <a
+            href="#"
+            className={`menu-item ${pagina === 'usuarios' ? 'ativo' : ''}`}
+            onClick={() => setPagina('usuarios')}
+            >
+          <span>♙</span> Gerenciar usuários
+          </a>
+
         </nav>
 
         <div className="menu-rodape">
@@ -86,7 +100,159 @@ function App() {
         </div>
       </aside>
 
-      <main className="conteudo">
+  
+<main className="conteudo">
+
+  {pagina === 'usuarios' ? (
+
+    // TELA DE GERENCIAR USUÁRIOS
+    <section className="usuarios">
+
+      <header className="cabecalho">
+        <div>
+          <p className="subtitulo">GESTÃO DE ACESSOS</p>
+          <h1>Gerenciar usuários</h1>
+          <p className="descricao">
+            Crie e organize os acessos dos responsáveis pelos cemitérios.
+          </p>
+        </div>
+      </header>
+
+      <div className="cartao">
+        <h2>Novo usuário</h2>
+        <p>Preencha os dados para criar um novo acesso.</p>
+
+        <form className="formulario-usuario">
+
+          <div className="campo-formulario">
+            <label>Nome completo</label>
+            <input
+              type="text"
+              placeholder="Digite o nome completo"
+              required
+            />
+          </div>
+
+          <div className="campo-formulario">
+            <label>Nome de usuário</label>
+            <input
+              type="text"
+              placeholder="Crie um nome de usuário"
+              required
+            />
+          </div>
+
+          <div className="campo-formulario">
+            <label>Senha</label>
+            <input
+              type="password"
+              placeholder="Crie uma senha"
+              required
+            />
+          </div>
+
+          <div className="campo-formulario">
+            <label>Cemitério autorizado</label>
+            <select required defaultValue="">
+              <option value="" disabled>
+                Selecione um cemitério
+              </option>
+            </select>
+          </div>
+
+          <div className="campo-formulario">
+            <label>Tipo de acesso</label>
+            <select required defaultValue="">
+              <option value="" disabled>
+                Selecione o tipo de acesso
+              </option>
+              <option value="responsavel">
+                Responsável pelo cemitério
+              </option>
+              <option value="funcionario">
+                Funcionário autorizado
+              </option>
+            </select>
+          </div>
+
+          <button type="button">
+            Criar usuário
+          </button>
+
+        </form>
+      </div>
+
+    </section>
+
+  ) : pagina === 'cemiterios' ? (
+
+    // TELA DE GERENCIAR CEMITÉRIOS
+    <section className="cemiterios">
+
+      <header className="cabecalho">
+        <div>
+          <p className="subtitulo">GESTÃO DE UNIDADES</p>
+          <h1>Gerenciar cemitérios</h1>
+          <p className="descricao">
+            Cadastre e organize os cemitérios de cada cidade.
+          </p>
+        </div>
+      </header>
+
+      <div className="cartao">
+        <h2>Novo cemitério</h2>
+        <p>Preencha os dados para cadastrar um cemitério.</p>
+
+        <form className="formulario-usuario">
+
+          <div className="campo-formulario">
+            <label>Nome do cemitério</label>
+            <input
+              type="text"
+              placeholder="Digite o nome do cemitério"
+              required
+            />
+          </div>
+
+          <div className="campo-formulario">
+            <label>Cidade</label>
+            <input
+              type="text"
+              placeholder="Digite a cidade"
+              required
+            />
+          </div>
+
+          <div className="campo-formulario">
+            <label>Estado</label>
+            <input
+              type="text"
+              placeholder="Digite o estado"
+              required
+            />
+          </div>
+
+          <div className="campo-formulario">
+            <label>Situação do sistema</label>
+            <select defaultValue="inativo">
+              <option value="inativo">Inativo</option>
+              <option value="ativo">Ativo</option>
+            </select>
+          </div>
+
+          <button type="button">
+            Cadastrar cemitério
+          </button>
+
+        </form>
+      </div>
+
+    </section>
+
+  ) : (
+
+  <>
+        
         <header className="cabecalho">
           <div>
             <p className="subtitulo">GESTÃO DO SISTEMA</p>
@@ -192,8 +358,12 @@ function App() {
         <footer className="rodape">
           Memorial Map © 2026 · Painel administrativo
         </footer>
+         </>
+        )}
       </main>
     </div>
+
+    
   )
 }
 
